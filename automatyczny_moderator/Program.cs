@@ -15,7 +15,9 @@ namespace automatyczny_moderator
                 ModeratorLog modLog = new ModeratorLogDB();
                 string date = modLog.getLastModerationDate();
                 Console.WriteLine(date);
+                modLog.startOfWork();
                 modLog.log("Udalo sie i zapisac");
+                modLog.endOfWork();
             }
             view.goodByeScreen();
         }
