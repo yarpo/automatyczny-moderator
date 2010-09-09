@@ -12,9 +12,10 @@ namespace automatyczny_moderator
             Interface view = new Interface();
             if (view.startModerator())
             {
-                DatabaseSrc.getConnection();
-                DatabaseSrc.query("INSERT INTO `forum`.`phpbb_words` (`word_id` , `word` , `replacement` ) VALUES ( NULL , 'aaa', 'bbb' );");
-                DatabaseSrc.closeConnection();
+                ModeratorLog modLog = new ModeratorLogDB();
+                string date = modLog.getLastModerationDate();
+                Console.WriteLine(date);
+                modLog.log("Udalo sie i zapisac");
             }
             view.goodByeScreen();
         }
