@@ -10,12 +10,13 @@ namespace automatyczny_moderator
         static void Main(string[] args)
         {
             Interface view = new Interface();
-            view.appInfo();
-
-            DatabaseSrc.getConnection();
-            DatabaseSrc.query("INSERT INTO `forum`.`phpbb_words` (`word_id` , `word` , `replacement` ) VALUES ( NULL , 'aaa', 'bbb' );");
-            DatabaseSrc.closeConnection();
-            Console.Read();
+            if (view.startModerator())
+            {
+                DatabaseSrc.getConnection();
+                DatabaseSrc.query("INSERT INTO `forum`.`phpbb_words` (`word_id` , `word` , `replacement` ) VALUES ( NULL , 'aaa', 'bbb' );");
+                DatabaseSrc.closeConnection();
+            }
+            view.goodByeScreen();
         }
     }
 }
