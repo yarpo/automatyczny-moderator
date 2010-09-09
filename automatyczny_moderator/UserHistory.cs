@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections;
 
 namespace automatyczny_moderator
 {
-    class UserHistory
+    interface UserHistory
     {
+        ArrayList getWarnings();
+        void log(string status);
     }
 }
