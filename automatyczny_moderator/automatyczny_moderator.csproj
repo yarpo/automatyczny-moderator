@@ -47,8 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseSrc.cs" />
-    <Compile Include="DataSrc.cs" />
     <Compile Include="Interface.cs" />
+    <Compile Include="ModeratorLog.cs" />
+    <Compile Include="ModeratorLogDB.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

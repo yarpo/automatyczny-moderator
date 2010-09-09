@@ -1,5 +1,0 @@
-C:\Documents and Settings\yarpo\Moje dokumenty\Visual Studio 2008\Projects\automatyczny_moderator\automatyczny_moderator\obj\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\yarpo\Moje dokumenty\Visual Studio 2008\Projects\automatyczny_moderator\automatyczny_moderator\bin\Debug\automatyczny_moderator.exe
-C:\Documents and Settings\yarpo\Moje dokumenty\Visual Studio 2008\Projects\automatyczny_moderator\automatyczny_moderator\bin\Debug\automatyczny_moderator.pdb
-C:\Documents and Settings\yarpo\Moje dokumenty\Visual Studio 2008\Projects\automatyczny_moderator\automatyczny_moderator\obj\Debug\automatyczny_moderator.exe
-C:\Documents and Settings\yarpo\Moje dokumenty\Visual Studio 2008\Projects\automatyczny_moderator\automatyczny_moderator\obj\Debug\automatyczny_moderator.pdb
