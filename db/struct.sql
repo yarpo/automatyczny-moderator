@@ -1,4 +1,4 @@
 CREATE TABLE `forum`.`automod_mlog` (
-`date` DATE PRIMARY KEY DEFAULT CURRENT_TIMESTAMP ,
+`date` DATETIME PRIMARY KEY,
 `info` VARCHAR( 255 ) ,
 )
