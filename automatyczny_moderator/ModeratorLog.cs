@@ -8,8 +8,9 @@ namespace automatyczny_moderator
     public interface ModeratorLog
     {
         string getLastModerationDate();
-        void setLastModerationDate();
-        void setLastModerationDate(string date);
+        void startOfWork();
+        void reading();
+        void endOfWork();
         void log(string status);
     }
 }
