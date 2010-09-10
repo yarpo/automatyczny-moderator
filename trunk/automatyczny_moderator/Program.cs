@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
 
 namespace automatyczny_moderator
@@ -24,6 +22,7 @@ namespace automatyczny_moderator
                 Moderator moderator = new ModeratorImpl();
                 SpellingResult sr = moderator.checkSpelling(a[0] as Post);
                 SwearResult swr = moderator.checkSwearWords(a[0] as Post);
+                moderator.checkEmoticons(a[0] as Post);
                 modLog.endOfWork();
             }
             view.goodByeScreen();
