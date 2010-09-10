@@ -50,13 +50,13 @@ namespace automatyczny_moderator
              return Regex.Split(s, @"\W+");
         }
 
-        public void checkSwearWords(Post post)
+        public SwearResult checkSwearWords(Post post)
         {
             string[] swears = {"a", "b"};
             string[] words = splitWords(post.Content);
 
-            int wordsNo = words.Length;
-            int swearCount = 0;
+            SwearResult result = new SwearResult();
+            result.Words = words.Length;
 
             foreach (string word in words)
             {
@@ -64,10 +64,11 @@ namespace automatyczny_moderator
                 {
                     if (word.Equals(swear))
                     {
-                        swearCount++;
+                        result.SwearWords.Add(word);
                     }
                 }
             }
+            return result;
         }
 
         public void checkEmoticons(Post post)

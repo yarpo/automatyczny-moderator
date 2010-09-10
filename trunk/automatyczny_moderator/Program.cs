@@ -22,7 +22,8 @@ namespace automatyczny_moderator
                 Forum forum = new Forum();
                 ArrayList a = forum.readPosts(date);
                 Moderator moderator = new ModeratorImpl();
-                moderator.checkSpelling(a[0] as Post);
+                SpellingResult sr = moderator.checkSpelling(a[0] as Post);
+                SwearResult swr = moderator.checkSwearWords(a[0] as Post);
                 modLog.endOfWork();
             }
             view.goodByeScreen();

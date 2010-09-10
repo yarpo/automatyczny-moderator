@@ -8,12 +8,10 @@ namespace automatyczny_moderator
 {
     class SpellingResult
     {
-        private double procentage;
-
         public double Procentage
         {
-            get { return procentage; }
-            set { procentage = value; }
+            get { return (double)Misspelled/(double)words * 100; }
+            private set { }
         }
         public ArrayList MisspelledWords = new ArrayList();
 
@@ -24,7 +22,6 @@ namespace automatyczny_moderator
             get { return words; }
             set { words = value; }
         }
-        private int misspelled = 0;
 
         public int Misspelled
         {
