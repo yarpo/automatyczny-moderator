@@ -52,7 +52,7 @@ namespace automatyczny_moderator
 
         public SwearResult checkSwearWords(Post post)
         {
-            string[] swears = {"a", "b"};
+            string[] swears = {"kurwa", "chuj"};
             string[] words = splitWords(post.Content);
 
             SwearResult result = new SwearResult();
@@ -71,9 +71,24 @@ namespace automatyczny_moderator
             return result;
         }
 
-        public void checkEmoticons(Post post)
+        public EmoticonsResult checkEmoticons(Post post)
         {
-            throw new NotImplementedException();
+            EmoticonsResult result = new EmoticonsResult();
+            result.Words = splitWords(post.Content).Length;
+            var matches = Regex.Matches(post.Content, @"\bchuj\b");
+
+            foreach (Match match in matches)
+            {
+                GroupCollection groups = match.Groups;
+                Console.WriteLine("'{0}' repeated at positions {1} and {2}",
+                                  groups["word"].Value,
+                                  groups[0].Index,
+                                  groups[1].Index);
+            }
+
+
+
+            return result;
         }
 
         #endregion

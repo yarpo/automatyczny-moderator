@@ -4,6 +4,6 @@
     {
         SpellingResult checkSpelling(Post post);
         SwearResult checkSwearWords(Post post);
-        void checkEmoticons(Post post);
+        EmoticonsResult checkEmoticons(Post post);
     }
 }
