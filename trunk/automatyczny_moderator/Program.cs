@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace automatyczny_moderator
 {
@@ -18,6 +19,8 @@ namespace automatyczny_moderator
                 modLog.startOfWork();
                 UserHistory userLog = new UserHistoryDB(1);
                 userLog.ban("BAN");
+                Forum forum = new Forum();
+                ArrayList a = forum.readPosts(date);
                 modLog.endOfWork();
             }
             view.goodByeScreen();
