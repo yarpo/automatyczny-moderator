@@ -3,7 +3,7 @@
     interface Moderator
     {
         SpellingResult checkSpelling(Post post);
-        void checkSwearWords(Post post);
+        SwearResult checkSwearWords(Post post);
         void checkEmoticons(Post post);
     }
 }
