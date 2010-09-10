@@ -11,18 +11,18 @@ namespace automatyczny_moderator
     {
         const string TABLE = "automod_ulog";
 
-        private int id;
+        private int iduser;
 
         public UserHistoryDB( int id )
         {
-            this.id = id;
+            this.iduser = id;
         }
 
         #region UserHistory Members
 
         public ArrayList getWarnings()
         {
-            string sql = "SELECT * FROM " + TABLE + " WHERE id = " + this.id;
+            string sql = "SELECT * FROM " + TABLE + " WHERE iduser = " + this.iduser;
             MySqlDataReader data = DatabaseSrc.query(sql);
             ArrayList result = new ArrayList();
 
@@ -34,12 +34,35 @@ namespace automatyczny_moderator
             return result;
         }
 
+
         public void log(string status)
         {
             string now = getCurrentDateString();
-            string sql = "INSERT INTO " + TABLE + "(id, date, info)" +
-                " VALUES (NULL, '" + now + "', '" + status + "')";
+            string sql = "INSERT INTO " + TABLE + 
+                "(id, iduser, date, info)" +
+                " VALUES (NULL," + this.iduser + 
+                " '" + now + "', '" + status + "')";
             DatabaseSrc.query(sql);
+        }
+
+        public void warning(string msg)
+        {
+            log(msg);
+        }
+
+        public void deletePost(string msg)
+        {
+            log(msg);
+        }
+
+        public void ban(string msg)
+        {
+            log(msg);
+        }
+
+        public void deleteUser(string msg)
+        {
+            log(msg);
         }
 
         #endregion
