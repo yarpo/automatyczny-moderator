@@ -6,5 +6,9 @@ namespace automatyczny_moderator
     {
         ArrayList getWarnings();
         void log(string status);
+        void warning(string msg);
+        void deletePost(string msg);
+        void ban(string msg);
+        void deleteUser(string msg);
     }
 }
