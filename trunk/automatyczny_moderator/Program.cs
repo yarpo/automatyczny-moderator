@@ -16,7 +16,8 @@ namespace automatyczny_moderator
                 string date = modLog.getLastModerationDate();
                 Console.WriteLine(date);
                 modLog.startOfWork();
-                modLog.log("Udalo sie i zapisac");
+                UserHistory userLog = new UserHistoryDB(1);
+                userLog.ban("BAN");
                 modLog.endOfWork();
             }
             view.goodByeScreen();

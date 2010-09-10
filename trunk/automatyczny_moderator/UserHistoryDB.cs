@@ -10,6 +10,7 @@ namespace automatyczny_moderator
     public class UserHistoryDB : UserHistory
     {
         const string TABLE = "automod_ulog";
+        const int NO_PENALITY_POINTS = 0;
 
         private int iduser;
 
@@ -34,14 +35,18 @@ namespace automatyczny_moderator
             return result;
         }
 
-
         public void log(string status)
+        {
+            log(status, NO_PENALITY_POINTS);
+        }
+
+        public void log(string status, int points)
         {
             string now = getCurrentDateString();
             string sql = "INSERT INTO " + TABLE + 
                 "(id, iduser, date, info)" +
                 " VALUES (NULL," + this.iduser + 
-                " '" + now + "', '" + status + "')";
+                ", '" + now + "', '" + status + "')";
             DatabaseSrc.query(sql);
         }
 
