@@ -21,6 +21,8 @@ namespace automatyczny_moderator
                 userLog.ban("BAN");
                 Forum forum = new Forum();
                 ArrayList a = forum.readPosts(date);
+                Moderator moderator = new ModeratorImpl();
+                moderator.checkSpelling(a[0] as Post);
                 modLog.endOfWork();
             }
             view.goodByeScreen();
