@@ -14,19 +14,16 @@ namespace automatyczny_moderator
         private const int POST_CONTENT = 1;
         private const int POST_TIME = 2;
 
+        private Moderator moderator;
+
+        public Forum(Moderator moderator)
+        {
+            this.moderator = moderator;
+        }
+
         public ArrayList readPosts(string date)
         {
-            int time = getTimeStampFromDateString(date);
-            string sql = 
-                "SELECT " +
-                    ID_USER_COL + ", " +
-                    POST_CONT_COL + ", " +
-                    POST_TIME_COL + " " +
-                "FROM " +
-                    TABLE + " " +
-                "WHERE 1 = 1 or " +
-                    POST_TIME_COL + " >= " + (time-2000000);
-
+            string sql = createSQL(date);
             MySqlDataReader data = DatabaseSrc.query(sql);
             ArrayList result = new ArrayList();
             while (data.Read())
@@ -41,6 +38,20 @@ namespace automatyczny_moderator
             }
 
             return result;
+        }
+
+        private string createSQL(string date)
+        {
+            int time = getTimeStampFromDateString(date);
+            string sql =
+                "SELECT " +
+                    ID_USER_COL + ", " +
+                    POST_CONT_COL + ", " +
+                    POST_TIME_COL + " " +
+                "FROM " +
+                    TABLE + " " +
+                "WHERE 1 = 1 or " +
+                    POST_TIME_COL + " >= " + time;
         }
 
         private DateTime getDateTime(int time)
@@ -58,6 +69,25 @@ namespace automatyczny_moderator
         private DateTime getFirstDateTime()
         {
             return new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        }
+
+        public void moderate()
+        {
+            ModeratorLog modLog = this.moderator.getModeratorLog();
+            string date = modLog.getLastModerationDate();
+
+            Console.WriteLine("Ostatnia moderacja miała miejsce" + date);
+            modLog.startOfWork();
+
+            ArrayList posts = readPosts(date);
+            foreach (Post post in posts)
+            {
+                SpellingResult sr = moderator.checkSpelling(post);
+                moderator.jadgeSpelling(sr);
+                SwearResult swr = moderator.checkSwearWords(post);
+                EmoticonsResult er = moderator.checkEmoticons(post);
+            }
+            modLog.endOfWork();
         }
     }
 }
