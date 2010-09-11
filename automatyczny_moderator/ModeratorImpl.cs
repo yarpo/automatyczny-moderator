@@ -164,11 +164,15 @@ namespace automatyczny_moderator
         public const string ORT_WARN = "ORT_WARNING";
         public const string ORT_DISQ = "ORT_DISQUALIFICATION";
         public const string ORT_BAN = "ORT_BAN";
-        public const string ORT_DEL = "ORT_DELETE";
         
         public string jadgeSpelling(SpellingResult sr)
         {
             UserHistory user = new UserHistoryDB(sr.Iduser);
+
+            if (sr.Words < 30)
+            {
+                return "Za mało słów, aby oceniać";
+            }
 
             if (sr.Procentage > 2 && sr.Procentage <= 5)
             {
@@ -176,18 +180,18 @@ namespace automatyczny_moderator
             }
             else if (sr.Procentage > 5 && sr.Procentage <= 20)
             {
-                return user.ort(ORT_INFO);
+                return user.ort(ORT_WARN);
             }
             else if (sr.Procentage > 20 && sr.Procentage <= 30)
             {
-                return user.ort(ORT_INFO);
+                return user.ort(ORT_DISQ);
             }
             else if (sr.Procentage > 30)
             {
                 return user.ort(ORT_BAN, 3);
             }
 
-            return "Brak wulgaryzmow w poście usera o id " + sr.Iduser;
+            return "Nie ma błędów ortograficznych w poście usera " + sr.Iduser;
         }
 
         #endregion
