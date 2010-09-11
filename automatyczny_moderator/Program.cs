@@ -15,14 +15,12 @@ namespace automatyczny_moderator
                 string date = modLog.getLastModerationDate();
                 Console.WriteLine(date);
                 modLog.startOfWork();
-                UserHistory userLog = new UserHistoryDB(1);
-                userLog.ban("BAN");
                 Forum forum = new Forum();
-                ArrayList a = forum.readPosts(date);
+                ArrayList posts = forum.readPosts(date);
                 Moderator moderator = new ModeratorImpl();
-                SpellingResult sr = moderator.checkSpelling(a[0] as Post);
-                SwearResult swr = moderator.checkSwearWords(a[0] as Post);
-                var b = moderator.checkEmoticons(a[1] as Post);
+                SpellingResult sr = moderator.checkSpelling(posts[0] as Post);
+                SwearResult swr = moderator.checkSwearWords(posts[0] as Post);
+                var b = moderator.checkEmoticons(posts[1] as Post);
                 modLog.endOfWork();
             }
             view.goodByeScreen();
