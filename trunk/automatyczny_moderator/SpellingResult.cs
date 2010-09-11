@@ -8,6 +8,8 @@ namespace automatyczny_moderator
 {
     class SpellingResult
     {
+        public int Iduser;
+
         public double Procentage
         {
             get { return (double)Misspelled/(double)words * 100; }
@@ -15,13 +17,7 @@ namespace automatyczny_moderator
         }
         public ArrayList MisspelledWords = new ArrayList();
 
-        private int words;
-
-        public int Words
-        {
-            get { return words; }
-            set { words = value; }
-        }
+        public int Words;
 
         public int Misspelled
         {

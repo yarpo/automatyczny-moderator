@@ -5,5 +5,6 @@
         SpellingResult checkSpelling(Post post);
         SwearResult checkSwearWords(Post post);
         EmoticonsResult checkEmoticons(Post post);
+        ModeratorLog getModeratorLog();
     }
 }
