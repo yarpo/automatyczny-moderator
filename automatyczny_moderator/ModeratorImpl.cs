@@ -179,19 +179,19 @@ namespace automatyczny_moderator
 
             if (sr.Procentage > 2 && sr.Procentage <= 5)
             {
-                return user.ort(ORT_INFO);
+                user.ort(ORT_INFO);
             }
             else if (sr.Procentage > 5 && sr.Procentage <= 20)
             {
-                return user.ort(ORT_WARN);
+                user.ort(ORT_WARN);
             }
             else if (sr.Procentage > 20 && sr.Procentage <= 30)
             {
-                return user.ort(ORT_DISQ);
+                user.ort(ORT_DISQ);
             }
             else if (sr.Procentage > 30)
             {
-                return user.ort(ORT_BAN, 3);
+                user.ort(ORT_BAN, 3);
             }
 
             return "Nie ma błędów ortograficznych w poście usera " + sr.Iduser;

@@ -38,30 +38,26 @@ namespace automatyczny_moderator
             DatabaseSrc.query(sql);
         }
 
-        public string ort(string msg, int n)
+        public void ort(string msg, int n)
         {
-            string result = "";
             while (n-- > 0)
             {
                 log(msg);
-                result = updateOrt();
+                updateOrt();
             }
-            return result;
         }
 
-        public string ort(string msg)
+        public void ort(string msg)
         {
-            return ort(msg, 1);
+            ort(msg, 1);
         }
 
-        private string updateOrt()
+        private void updateOrt()
         {
-            updateOrtInfo();
-            updateOrtWarn();
-            updateOrtDisq();
-            updateOrtBan();
-
-           return "";
+            update(ModeratorImpl.ORT_INFO, ModeratorImpl.ORT_WARN, 10);
+            update(ModeratorImpl.ORT_WARN, ModeratorImpl.ORT_DISQ, 5);
+            update(ModeratorImpl.ORT_DISQ, ModeratorImpl.ORT_BAN, 5);
+            update(ModeratorImpl.ORT_BAN, ModeratorImpl.ORT_DEL, 5);
         }
 
         private int getNumberOfInfos(string info)
@@ -69,22 +65,10 @@ namespace automatyczny_moderator
             string sql =
                 "SELECT count(*) FROM automod_ulog WHERE iduser = " +
                     this.iduser + " AND status = " + ACTIVE +
-                    " AND info like('" + ModeratorImpl.ORT_INFO + "')";
+                    " AND info like('" + info + "')";
             MySqlDataReader data = DatabaseSrc.query(sql);
 
             return (data.Read()) ? data.GetInt32(0) : 0;
-        }
-
-        private string updateOrtInfo()
-        {
-            int ortInfo = getNumberOfInfos(ModeratorImpl.ORT_INFO);
-            if (ortInfo >= 10)
-            {
-                delete(ModeratorImpl.ORT_INFO); // usun te notki
-                log(ModeratorImpl.ORT_WARN); // dodaj warning
-            }
-
-            return "";
         }
 
         private void delete(string info)
@@ -95,29 +79,22 @@ namespace automatyczny_moderator
             DatabaseSrc.query(sql);
         }
 
-        private string updateOrtWarn()
+        /**
+         * Pozwala na update ze statusu `currentStatus`, jesli w tabeli 
+         * znajduje sie wystarczajaco = `n` wpisow z tym statusem
+         * Update polega na dodaniu wpisu o `nextStatus` statusie
+         */
+        private bool update(string currentStatus, string nextStatus, int n)
         {
-            // odczytaj ile jest ORT_WARN
-            // jesli jest 5 -> usun je i zapisz 1 ORT_DISQ
-            return "";
+            int warnigns = getNumberOfInfos(currentStatus);
+            if (warnigns >= n)
+            {
+                delete(currentStatus); // usun te notki
+                log(nextStatus); // dodaj warning
+                return true;
+            }
+            return false;
         }
-
-        private string updateOrtDisq()
-        {
-            // odczytaj ile jest ORT_DISQ
-            // jesli jest 10 -> usun je i zapisz 1 ORT_BAN
-            // wyzeruj licznik postow
-            return "";
-        }
-
-        private string updateOrtBan()
-        {
-            // odczytaj ile jest ORT_BAN
-            // jesli jest 5 -> usun je i zapisz 1 ORT_DELETE
-            // usun usera z bazy danych
-            return "";
-        }
-
 
         public string swears(string msg)
         {

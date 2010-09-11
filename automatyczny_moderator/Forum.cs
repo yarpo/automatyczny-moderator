@@ -78,10 +78,12 @@ namespace automatyczny_moderator
             {
                 SpellingResult sr = moderator.checkSpelling(post);
                 moderator.jadgeSpelling(sr);
-                SwearResult swr = moderator.checkSwearWords(post);
+          /*
+               SwearResult swr = moderator.checkSwearWords(post);
                 moderator.jadgeSwearWords(swr);
-                EmoticonsResult er = moderator.checkEmoticons(post);
+               /* EmoticonsResult er = moderator.checkEmoticons(post);
                 moderator.jadgeEmoticons(er);
+            */
             }
             modLog.endOfWork();
         }
