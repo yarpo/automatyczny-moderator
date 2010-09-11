@@ -98,14 +98,34 @@ namespace automatyczny_moderator
 
         public string swears(string msg)
         {
+            log(msg);
+            updateSwears();
             return "";
+        }
+
+        private void updateSwears()
+        {
+            update(ModeratorImpl.SWEAR_INFO, ModeratorImpl.SWEAR_WARN, 10);
+            update(ModeratorImpl.SWEAR_WARN, ModeratorImpl.SWEAR_DISQ, 3);
+            update(ModeratorImpl.SWEAR_DISQ, ModeratorImpl.SWEAR_BAN, 3);
+            update(ModeratorImpl.SWEAR_BAN, ModeratorImpl.SWEAR_DEL, 2);
         }
 
         public string emots(string msg)
         {
+            log(msg);
+            updateEmots();
             return "";
         }
-      
+
+        private void updateEmots()
+        {
+            update(ModeratorImpl.EMO_INFO, ModeratorImpl.EMO_WARN, 20);
+            update(ModeratorImpl.EMO_WARN, ModeratorImpl.EMO_DISQ, 10);
+            update(ModeratorImpl.EMO_DISQ, ModeratorImpl.EMO_BAN, 10);
+            update(ModeratorImpl.EMO_BAN, ModeratorImpl.EMO_DEL, 10);
+        }
+
         #endregion
 
         private string getCurrentDateString()
