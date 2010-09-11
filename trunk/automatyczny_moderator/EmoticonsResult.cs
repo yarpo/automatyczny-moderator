@@ -9,12 +9,12 @@ namespace automatyczny_moderator
     class EmoticonsResult
     {
         public int Iduser;
-        public int words;
-        public int counter;
+        public int Words;
+        public int Counter;
 
         public double Procentage
         {
-            get { return (double)counter / (double)words * 100; }
+            get { return (double)Counter / (double)Words * 100; }
             private set { }
         }
     }

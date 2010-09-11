@@ -12,7 +12,7 @@ namespace automatyczny_moderator
 
         public double Procentage
         {
-            get { return (double)Misspelled/(double)words * 100; }
+            get { return (double)Misspelled/(double)Words * 100; }
             private set { }
         }
         public ArrayList MisspelledWords = new ArrayList();

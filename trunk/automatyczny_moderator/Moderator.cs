@@ -7,8 +7,8 @@
         EmoticonsResult checkEmoticons(Post post);
         ModeratorLog getModeratorLog();
 
-        void jadgeEmoticons(EmoticonsResult er);
-        void jadgeSwearWords(SwearResult swr);
-        void jadgeSpelling(SpellingResult sr);
+        string jadgeEmoticons(EmoticonsResult er);
+        string jadgeSwearWords(SwearResult swr);
+        string jadgeSpelling(SpellingResult sr);
     }
 }
