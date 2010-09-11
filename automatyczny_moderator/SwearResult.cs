@@ -13,7 +13,13 @@ namespace automatyczny_moderator
         }
         public ArrayList SwearWords = new ArrayList();
 
-        public int words;
+        private int words;
+
+        public int Words
+        {
+            get { return words; }
+            set { words = value; }
+        }
 
         public int Swears
         {

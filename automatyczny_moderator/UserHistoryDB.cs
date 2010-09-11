@@ -50,26 +50,26 @@ namespace automatyczny_moderator
             DatabaseSrc.query(sql);
         }
 
-        public void warning(string msg)
+        public string ort(string msg, int n)
         {
-            log(msg);
+            return "";
         }
 
-        public void deletePost(string msg)
+        public string ort(string msg)
         {
-            log(msg);
+            return "";
         }
 
-        public void ban(string msg)
+        public string swears(string msg)
         {
-            log(msg);
+            return "";
         }
 
-        public void deleteUser(string msg)
+        public string emots(string msg)
         {
-            log(msg);
+            return "";
         }
-
+      
         #endregion
 
         private string getCurrentDateString()

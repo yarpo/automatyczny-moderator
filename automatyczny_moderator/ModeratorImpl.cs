@@ -16,9 +16,10 @@ namespace automatyczny_moderator
         private const string POLISH_DICT = "../../dict/pl_pl.dic";
         private string[] emoticons = { @":\)", @":\>", @":\(", @":\$", @":\*", ":D", ":P", ";P" };
 
-        public ModeratorImpl()
+        public ModeratorImpl(ModeratorLog log)
         {
             hunspell = new Hunspell(POLISH_AFF, POLISH_DICT);
+            this.mlog = log; 
         }
 
         #region Moderator Members
@@ -100,19 +101,93 @@ namespace automatyczny_moderator
             return this.mlog;
         }
 
-        public void jadgeEmoticons(EmoticonsResult er)
+        public const string EMO_INFO = "EMO_INFO";
+        public const string EMO_WARN = "EMO_WARNING";
+        public const string EMO_DISQ = "EMO_DISQUALIFICATION";
+        public const string EMO_BAN = "EMO_BAN";
+
+        public string jadgeEmoticons(EmoticonsResult er)
         {
-            throw new NotImplementedException();
+            UserHistory user = new UserHistoryDB(er.Iduser);
+
+            if (er.Procentage > 30 && er.Procentage <= 35)
+            {
+                return user.emots(EMO_INFO);
+            }
+            else if (er.Procentage > 35 && er.Procentage <= 50)
+            {
+                return user.emots(EMO_WARN);
+            }
+            else if (er.Procentage > 50 && er.Procentage <= 75)
+            {
+                return user.emots(EMO_DISQ);
+            }
+            else if (er.Procentage > 75)
+            {
+                return user.emots(EMO_BAN);
+            }
+
+            return "Poprawny post usera o id " + er.Iduser;
         }
 
-        public void jadgeSwearWords(SwearResult swr)
+        public const string SWEAR_INFO = "SWEAR_INFO";
+        public const string SWEAR_WARN = "SWEAR_WARNING";
+        public const string SWEAR_DISQ = "SWEAR_DISQUALIFICATION";
+        public const string SWEAR_BAN  = "SWEAR_BAN";
+
+        public string jadgeSwearWords(SwearResult swr)
         {
-            throw new NotImplementedException();
+            UserHistory user = new UserHistoryDB(swr.Iduser);
+
+            if (swr.Swears > 0)
+            {
+                user.swears(SWEAR_INFO);
+            }
+
+            if (swr.Procentage > 1 && swr.Procentage <= 3)
+            {
+                return user.swears(SWEAR_WARN);
+            }
+            else if (swr.Procentage > 3 && swr.Procentage <= 5)
+            {
+                return user.swears(SWEAR_DISQ);
+            }
+            else if (swr.Procentage > 5)
+            {
+                return user.swears(SWEAR_BAN);
+            }
+
+            return "Brak wulgaryzmow w poście usera o id " + swr.Iduser;
         }
 
-        public void jadgeSpelling(SpellingResult sr)
+        public const string ORT_INFO = "ORT_INFO";
+        public const string ORT_WARN = "ORT_WARNING";
+        public const string ORT_DISQ = "ORT_DISQUALIFICATION";
+        public const string ORT_BAN = "ORT_BAN";
+        public const string ORT_DEL = "ORT_DELETE";
+        
+        public string jadgeSpelling(SpellingResult sr)
         {
-            throw new NotImplementedException();
+            UserHistory user = new UserHistoryDB(sr.Iduser);
+
+            if (sr.Procentage > 2 && sr.Procentage <= 5)
+            {
+                return user.ort(ORT_INFO);
+            }
+            else if (sr.Procentage > 5 && sr.Procentage <= 20)
+            {
+                return user.ort(ORT_INFO);
+            }
+            else if (sr.Procentage > 20 && sr.Procentage <= 30)
+            {
+                return user.ort(ORT_INFO);
+            }
+            else if (sr.Procentage > 30)
+            {
+                return user.ort(ORT_BAN, 3);
+            }
+
+            return "Brak wulgaryzmow w poście usera o id " + sr.Iduser;
         }
 
         #endregion
