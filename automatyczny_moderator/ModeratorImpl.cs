@@ -13,6 +13,7 @@ namespace automatyczny_moderator
 
         private const string POLISH_AFF = "../../dict/pl_pl.aff";
         private const string POLISH_DICT = "../../dict/pl_pl.dic";
+        private string[] emoticons = { @":\)", @":\>", @":\(", @":\$", @":\*", ":D", ":P", ";P" };
 
         public ModeratorImpl()
         {
@@ -74,21 +75,30 @@ namespace automatyczny_moderator
         public EmoticonsResult checkEmoticons(Post post)
         {
             EmoticonsResult result = new EmoticonsResult();
-            result.Words = splitWords(post.Content).Length;
-            var matches = Regex.Matches(post.Content, @"\bchuj\b");
 
-            foreach (Match match in matches)
+            string[] words = splitWords(post.Content);
+            foreach (string word in words)
             {
-                GroupCollection groups = match.Groups;
-                Console.WriteLine("'{0}' repeated at positions {1} and {2}",
-                                  groups["word"].Value,
-                                  groups[0].Index,
-                                  groups[1].Index);
+                Console.WriteLine(word);
             }
 
+            result.Words = splitWords(post.Content).Length;
+            string regExpEmoticons = createRegExpEmots();
 
+            var matches = Regex.Matches(post.Content, regExpEmoticons);
+            result.Counter = matches.Count;
 
             return result;
+        }
+
+        private string createRegExpEmots()
+        {
+            string reg = "";
+            foreach (string emot in emoticons)
+            {
+                reg += "[.]*" + emot + "[.]*|";
+            }
+            return reg.Substring(0, reg.Length - 1);
         }
 
         #endregion

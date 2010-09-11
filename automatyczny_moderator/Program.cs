@@ -22,7 +22,7 @@ namespace automatyczny_moderator
                 Moderator moderator = new ModeratorImpl();
                 SpellingResult sr = moderator.checkSpelling(a[0] as Post);
                 SwearResult swr = moderator.checkSwearWords(a[0] as Post);
-                moderator.checkEmoticons(a[0] as Post);
+                var b = moderator.checkEmoticons(a[1] as Post);
                 modLog.endOfWork();
             }
             view.goodByeScreen();
