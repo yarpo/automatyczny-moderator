@@ -6,11 +6,6 @@ namespace automatyczny_moderator
     {
         public int Iduser;
 
-        public double Procentage
-        {
-            get { return (double)Swears/(double)Words * 100; }
-            private set { }
-        }
         public ArrayList SwearWords = new ArrayList();
 
         private int words;

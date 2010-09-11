@@ -146,15 +146,15 @@ namespace automatyczny_moderator
                 user.swears(SWEAR_INFO);
             }
 
-            if (swr.Procentage > 1 && swr.Procentage <= 3)
+            if (swr.Swears > 1 && swr.Swears <= 3)
             {
                 return user.swears(SWEAR_WARN);
             }
-            else if (swr.Procentage > 3 && swr.Procentage <= 5)
+            else if (swr.Swears > 3 && swr.Swears <= 5)
             {
                 return user.swears(SWEAR_DISQ);
             }
-            else if (swr.Procentage > 5)
+            else if (swr.Swears > 5)
             {
                 return user.swears(SWEAR_BAN);
             }
