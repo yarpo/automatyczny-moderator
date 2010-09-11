@@ -100,6 +100,23 @@ namespace automatyczny_moderator
             return this.mlog;
         }
 
+        public void jadgeEmoticons(EmoticonsResult er)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void jadgeSwearWords(SwearResult swr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void jadgeSpelling(SpellingResult sr)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
         private string createRegExpEmots()
         {
             string reg = "";
@@ -109,7 +126,5 @@ namespace automatyczny_moderator
             }
             return reg.Substring(0, reg.Length - 1);
         }
-
-        #endregion
     }
 }
