@@ -97,7 +97,7 @@ namespace automatyczny_moderator
 
         public ModeratorLog getModeratorLog()
         {
-            return new ModeratorLogDB();
+            return this.mlog;
         }
 
         private string createRegExpEmots()
