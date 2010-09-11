@@ -105,6 +105,7 @@ namespace automatyczny_moderator
         public const string EMO_WARN = "EMO_WARNING";
         public const string EMO_DISQ = "EMO_DISQUALIFICATION";
         public const string EMO_BAN = "EMO_BAN";
+        public const string EMO_DEL = "EMO_DEL";
 
         public string jadgeEmoticons(EmoticonsResult er)
         {
@@ -134,6 +135,7 @@ namespace automatyczny_moderator
         public const string SWEAR_WARN = "SWEAR_WARNING";
         public const string SWEAR_DISQ = "SWEAR_DISQUALIFICATION";
         public const string SWEAR_BAN  = "SWEAR_BAN";
+        public const string SWEAR_DEL = "SWEAR_DEL";
 
         public string jadgeSwearWords(SwearResult swr)
         {
@@ -164,6 +166,7 @@ namespace automatyczny_moderator
         public const string ORT_WARN = "ORT_WARNING";
         public const string ORT_DISQ = "ORT_DISQUALIFICATION";
         public const string ORT_BAN = "ORT_BAN";
+        public const string ORT_DEL = "ORT_DEL";
         
         public string jadgeSpelling(SpellingResult sr)
         {
