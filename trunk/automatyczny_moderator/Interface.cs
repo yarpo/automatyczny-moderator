@@ -28,6 +28,7 @@ namespace automatyczny_moderator
 
         public void goodByeScreen()
         {
+            Console.WriteLine("");
             Console.WriteLine("Dziękuję za skorzystanie z programu.");
             Console.WriteLine("\nNaciśnij enter by zakończyć program...");
             Console.Read();
