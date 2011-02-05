@@ -45,7 +45,7 @@ namespace automatyczny_moderator
             closeConnection();
             getConnection();
             MySqlCommand mysqlCmd = new MySqlCommand(sql, connection);
-            Console.WriteLine(sql);
+            //Console.WriteLine(sql);
             MySqlDataReader result = mysqlCmd.ExecuteReader();
             return result;
         }

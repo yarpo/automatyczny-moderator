@@ -82,10 +82,6 @@ namespace automatyczny_moderator
 
             string[] words = splitWords(post.Content);
             result.Iduser = post.Iduser;
-            foreach (string word in words)
-            {
-                Console.WriteLine(word);
-            }
 
             result.Words = splitWords(post.Content).Length;
             string regExpEmoticons = createRegExpEmots();
@@ -110,6 +106,11 @@ namespace automatyczny_moderator
         public string jadgeEmoticons(EmoticonsResult er)
         {
             UserHistory user = new UserHistoryDB(er.Iduser);
+
+            if (er.Counter < 30)
+            {
+                return "";
+            }
 
             if (er.Procentage > 30 && er.Procentage <= 35)
             {
